@@ -1,0 +1,43 @@
+﻿@model Votex.ViewModels.CandidateViewModel
+
+@{
+    ViewBag.Title = "Candidate";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Save", "Candidates"))
+{
+    <div class="form-group">
+        @Html.LabelFor(c => c.FirstName)
+        @Html.TextBoxFor(c => c.FirstName, new {@class = "form-control"})
+        @Html.ValidationMessageFor(c => c.FirstName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(c => c.MiddleName)
+        @Html.TextBoxFor(c => c.MiddleName, new {@class = "form-control"})
+        @Html.ValidationMessageFor(c => c.MiddleName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(c => c.LastName)
+        @Html.TextBoxFor(c => c.LastName, new {@class = "form-control"})
+        @Html.ValidationMessageFor(c => c.LastName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(c => c.PoliticalPartyId)
+        @Html.DropDownListFor(c => c.PoliticalPartyId, new SelectList(Model.PoliticalParties, "Id", "Name"), "Not Set", new {@class = "form-control"})
+        @Html.ValidationMessageFor(c => c.PoliticalPartyId)
+    </div>
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(c => c.Id)
+   
+    <a href="@Url.Action("Index", "Candidates")" class="btn btn-warning">
+        @Html.FontAwesome(FontAwesomeIconSet.Backward)
+        Back
+    </a>
+    <button type="submit" class="btn btn-success">@Html.FontAwesome(FontAwesomeIconSet.Save) Save</button>
+}
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

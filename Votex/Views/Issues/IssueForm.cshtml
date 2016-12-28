@@ -1,0 +1,31 @@
+﻿@model Votex.Models.Core.Domain.Issue
+
+@{
+    ViewBag.Title = "Issues Form";
+}
+
+<h3>@ViewBag.Title</h3>
+
+<hr/>
+
+@using (Html.BeginForm("Save", "Issues"))
+{
+    <div class="form-group">
+        @Html.LabelFor(i => i.Question)
+        @Html.TextBoxFor(i => i.Question, new { @class = "form-control" })
+        @Html.ValidationMessageFor(i => i.Question)
+    </div>
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(e => e.Id)
+
+    <a href="@Url.Action("Index", "Issues")" class="btn btn-warning">
+        @Html.FontAwesome(FontAwesomeIconSet.Backward)
+        Back
+    </a>
+    <button type="submit" class="btn btn-success">@Html.FontAwesome(FontAwesomeIconSet.Save) Save</button>
+}
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

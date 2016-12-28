@@ -1,0 +1,31 @@
+﻿@model Votex.Models.Core.Domain.ElectoralDistrict
+@{
+    ViewBag.Title = "Electoral District";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Save", "ElectoralDistricts"))
+{
+    <div class="form-group">
+        @Html.LabelFor(e => e.Name)
+        @Html.TextBoxFor(e => e.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(e => e.Name)
+    </div>
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(e => e.Id)
+
+    <a href="@Url.Action("Index", "ElectoralDistricts")" class="btn btn-warning">
+        @Html.FontAwesome(FontAwesomeIconSet.Backward)
+        Back
+    </a>
+    <button type="submit" class="btn btn-success">@Html.FontAwesome(FontAwesomeIconSet.Save) Save</button>
+}
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+

@@ -1,0 +1,131 @@
+﻿@using Votex.Models
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Votex</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Mvc.RazorTools.BundleManager.Styles.Render()
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Votex", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @if (User.IsInRole(RoleName.ElectionOfficer) || User.IsInRole(RoleName.Administrator))
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li class="menu-item dropdown dropdown-submenu">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-tags"></i> Definitions</a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="@Url.Action("Index", "PoliticalParties")">
+                                                @Html.FontAwesome(FontAwesomeIconSet.NewspaperO) Political Parties
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Index", "Candidates")">
+                                                @Html.FontAwesome(FontAwesomeIconSet.Users) Candidates
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Index", "ElectoralDistricts")">
+                                                @Html.FontAwesome(FontAwesomeIconSet.Adjust) Electoral Districts
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Index", "Issues")">
+                                                @Html.FontAwesome(FontAwesomeIconSet.Question) Issues
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Index", "Elections")">
+                                                @Html.FontAwesome(FontAwesomeIconSet.Tags) Elections
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Index", "Ballots")">
+                                                @Html.FontAwesome(FontAwesomeIconSet.Circle) Ballots
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item dropdown">
+                                    <a href="@Url.Action("Index", "Voters")">
+                                        @Html.FontAwesome(FontAwesomeIconSet.Users) Voters Management
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-side-menu">
+        <div class="brand">Votex</div>
+        <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+        <div class="menu-list">
+
+            <ul id="menu-content" class="menu-content collapse out">
+                <li>
+                    <a href=@Url.Action("Index","Home")>
+                        <i class="fa fa-dashboard fa-lg"></i> Dashboard
+                    </a>
+                </li>
+                @if (User.IsInRole(RoleName.ElectionOfficer) || User.IsInRole(RoleName.Administrator))
+                {
+                    <li data-toggle="collapse" data-target="#service" class="collapsed">
+                        <a href="#">@Html.FontAwesome(FontAwesomeIconSet.User) Admin <span class="arrow"></span></a>
+                    </li>
+                    <ul class="sub-menu collapse" id="service">
+                        <li><a href=@Url.Action("Index", "PoliticalParties")><i class="fa fa-tasks"></i> Political Parties</a></li>
+                        <li><a href=@Url.Action("Index", "Candidates")>@Html.FontAwesome(FontAwesomeIconSet.Male) Candidates</a></li>
+                        <li><a href=@Url.Action("Index", "ElectoralDistricts")>@Html.FontAwesome(FontAwesomeIconSet.Globe) Electoral Districts</a></li>
+                        <li><a href=@Url.Action("Index", "Issues")>@Html.FontAwesome(FontAwesomeIconSet.Question) Issues</a></li>
+                        <li><a href=@Url.Action("Index", "Elections")>@Html.FontAwesome(FontAwesomeIconSet.Tags) Elections</a></li>
+                        <li><a href=@Url.Action("Index", "Ballots")>@Html.FontAwesome(FontAwesomeIconSet.Circle) Ballots</a></li>
+                        <li><a href=@Url.Action("Index", "Voters")>@Html.FontAwesome(FontAwesomeIconSet.Users) Voters</a></li>
+                    </ul>
+                }
+                @if (Request.IsAuthenticated)
+                {
+                    <li>
+                        <a href="@Url.Action("Edit", "Profiles")">
+
+                            @Html.FontAwesome(FontAwesomeIconSet.Wrench) Profile
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Votex</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/lib")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

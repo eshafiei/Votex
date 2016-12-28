@@ -1,0 +1,14 @@
+D:\Projects\Votex\Votex\Votex.Model\bin\Debug\Votex.Model.dll.config
+D:\Projects\Votex\Votex\Votex.Model\bin\Debug\Votex.Model.dll
+D:\Projects\Votex\Votex\Votex.Model\bin\Debug\Votex.Model.pdb
+D:\Projects\Votex\Votex\Votex.Model\bin\Debug\EntityFramework.dll
+D:\Projects\Votex\Votex\Votex.Model\bin\Debug\EntityFramework.SqlServer.dll
+D:\Projects\Votex\Votex\Votex.Model\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\Projects\Votex\Votex\Votex.Model\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Projects\Votex\Votex\Votex.Model\bin\Debug\EntityFramework.xml
+D:\Projects\Votex\Votex\Votex.Model\bin\Debug\EntityFramework.SqlServer.xml
+D:\Projects\Votex\Votex\Votex.Model\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\Projects\Votex\Votex\Votex.Model\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Projects\Votex\Votex\Votex.Model\obj\Debug\Votex.Model.dll
+D:\Projects\Votex\Votex\Votex.Model\obj\Debug\Votex.Model.pdb
+D:\Projects\Votex\Votex\Votex.Model\obj\Debug\Votex.Model.csprojResolveAssemblyReference.cache

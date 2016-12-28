@@ -1,0 +1,24 @@
+﻿@model Votex.ViewModels.VoterViewModel
+
+@{
+    ViewBag.Title = "Voters Management";
+}
+<div class="row">
+
+    <h3>@ViewBag.Title</h3>
+
+    <hr />
+
+    <table id="Voters" class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Registration ID</th>
+                <th>Electoral District</th>
+                <th>@Html.FontAwesome(FontAwesomeIconSet.Edit)</th>
+                <th>@Html.FontAwesome(FontAwesomeIconSet.Remove)</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>

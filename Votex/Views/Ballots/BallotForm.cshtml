@@ -1,0 +1,85 @@
+﻿@model Votex.ViewModels.BallotViewModel
+@{
+    ViewBag.Title = "Ballot";
+}
+
+<h3>@ViewBag.Title</h3>
+
+<hr />
+
+@using (Html.BeginForm("Save", "Ballots"))
+{
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(b => b.OpenDate)
+                @Html.TextBox("OpenDate", String.Format("{0: dd MMM yyyy}", Model.OpenDate), new { @class = "form-control datePicker" })
+                @Html.ValidationMessageFor(b => b.OpenDate)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(b => b.CloseDate)
+                @Html.TextBox("CloseDate", String.Format("{0: dd MMM yyyy}", Model.CloseDate), new { @class = "form-control datePicker" })
+                @Html.ValidationMessageFor(b => b.CloseDate)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(b => b.ElectoralDistrictId)
+                @Html.DropDownListFor(b => b.ElectoralDistrictId, new SelectList(Model.ElectoralDistricts, "Id", "Name"), "Not Set", new { @class = "form-control" })
+                @Html.ValidationMessageFor(b => b.ElectoralDistrictId)
+            </div>
+            <div class="form-group">
+                @Html.Label("Available Elections:")
+                <div>
+                    <input type="text" id="ElectionsFilter" name="ElectionsFilter" value="" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Available Issues:")
+                <div>
+                    <input type="text" id="IssuesFilter" name="IssuesFilter" value="" class="form-control" />
+                </div>
+            </div>
+            @if (Model.Id != 0)
+            {
+                <div class="form-group">
+                    @Html.CheckBoxFor(b => b.Approved)
+                    @Html.LabelFor(b => b.Approved)
+                </div>
+            }
+        </div>
+        <div class="col-md-4">
+            <label>Selected Elections:</label>
+            @(Model.Id == 0 ?
+                  Html.ListBoxFor(b => b.SelectedElectionIds, new MultiSelectList("", "ElectionId", "Office"), new { Multiple = "multiple", @class = "form-control ballot-ListBox" }) :
+                  Html.ListBoxFor(b => b.SelectedElectionIds, new MultiSelectList(Model.Elections, "ElectionId", "Office"), new { Multiple = "multiple", @class = "form-control ballot-ListBox" })
+            )
+            <br />
+            <div class="col-md-offset-1">
+                <button id="removeElections" class="btn btn-danger">@Html.FontAwesome(FontAwesomeIconSet.Remove) Remove Selected Election(s)</button>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>Selected Issues:</label>
+            @(Model.Id == 0 ?
+                    Html.ListBoxFor(b => b.SelectedIssueIds, new MultiSelectList("", "IssueId", "Question"), new { Multiple = "multiple", @class = "form-control ballot-ListBox" }) :
+                    Html.ListBoxFor(b => b.SelectedIssueIds, new MultiSelectList(Model.Issues, "IssueId", "Question"), new { Multiple = "multiple", @class = "form-control ballot-ListBox" })
+            )
+            <br />
+            <div class="col-md-offset-1">
+                <button id="removeIssues" class="btn btn-danger">@Html.FontAwesome(FontAwesomeIconSet.Remove)  Remove Selected Issue(s)</button>
+            </div>
+        </div>
+    </div>
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(b => b.Id)
+
+    <a href="@Url.Action("Index", "Ballots")" class="btn btn-warning">
+        @Html.FontAwesome(FontAwesomeIconSet.Backward)
+        Back
+    </a>
+    <button type="submit" class="btn btn-success">@Html.FontAwesome(FontAwesomeIconSet.Save) Save</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

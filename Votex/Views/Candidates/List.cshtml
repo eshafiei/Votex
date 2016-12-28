@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Votex.ViewModels.CandidateViewModel>
+
+@{
+    ViewBag.Title = "Candidates";
+}
+<div class="row">
+    <h3>@ViewBag.Title</h3>
+
+    <hr />
+
+    <div class="form-group">
+        <a href="@Url.Action("Create", "Candidates")" class="btn btn-primary">
+            @Html.FontAwesome(FontAwesomeIconSet.File)
+            Add New
+        </a>
+    </div>
+
+    <table id="Candidates" class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Political Party</th>
+                <th>@Html.FontAwesome(FontAwesomeIconSet.Edit)</th>
+                <th>@Html.FontAwesome(FontAwesomeIconSet.Remove)</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
