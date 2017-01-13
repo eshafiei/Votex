@@ -4,6 +4,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using Autofac;
 using Autofac.Integration.Mvc;
+using Votex.Custom;
 using Votex.Modules;
 
 namespace Votex
@@ -26,6 +27,12 @@ namespace Votex
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            //MvcApplication.RegisterGlobalFilters(GlobalFilters.Filters);
+        }
+
+        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
+        {
+            filters.Add(new ErrorHandlerAttribute());
         }
     }
 }

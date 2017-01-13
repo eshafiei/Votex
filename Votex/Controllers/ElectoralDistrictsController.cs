@@ -1,4 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Reflection.Emit;
+using System.Web.Mvc;
+using Votex.Custom;
 using Votex.Models;
 using Votex.Models.Core;
 using Votex.Models.Core.Domain;
@@ -72,6 +75,12 @@ namespace Votex.Controllers
             if (electoralDistrictInDb == null)
             {
                 return HttpNotFound();
+            }
+
+            var voterExistInDistrict = _unitOfWork.Voters.SingleOrDefault(v => v.ElectoralDistrictId == id);
+            if (voterExistInDistrict != null)
+            {
+                return Json(new { success = false, responseText = "Can not delete district while in use by voters." }, JsonRequestBehavior.AllowGet);
             }
 
             _unitOfWork.ElectoralDistricts.Remove(electoralDistrictInDb);

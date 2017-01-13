@@ -8,6 +8,7 @@ $(document).ready(function () {
     });
 });
 
+
 // Political Parties Page
 
 $(document)
@@ -178,11 +179,19 @@ $(document)
                                         $.ajax({
                                             url: "/ElectoralDistricts/Delete/" + button.attr("data-ectoraldistrict-id"),
                                             method: "DELETE",
-                                            success: function () {
-                                                electoralDistrictsTable.row(button.parents("tr")).remove().draw();
-                                                toastr.success("Record successfully deleted.");
+                                            success: function (response) {
+                                                if (response != null) {
+                                                    if (response.success) {
+                                                        electoralDistrictsTable.row(button.parents("tr"))
+                                                            .remove()
+                                                            .draw();
+                                                        toastr.success("Record successfully deleted.");
+                                                    } else {
+                                                        toastr.error(response.responseText);
+                                                    }
+                                                }
                                             },
-                                            error: function () {
+                                            error: function (xhr, status, error) {
                                                 toastr.error("Something went wrong!");
                                             }
                                         });

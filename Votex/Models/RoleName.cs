@@ -4,5 +4,6 @@
     {
         public const string Administrator = "Administrator";
         public const string ElectionOfficer = "ElectionOfficer";
+        public const string Voter = "Voter";
     }
 }

@@ -210,6 +210,7 @@
     <Compile Include="Controllers\PoliticalPartiesController.cs" />
     <Compile Include="Controllers\ProfilesController.cs" />
     <Compile Include="Controllers\VotersController.cs" />
+    <Compile Include="Custom\ErrorHandlerAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -284,6 +285,10 @@
     <Compile Include="Migrations\201612270510165_GeneralUpdate5.cs" />
     <Compile Include="Migrations\201612270510165_GeneralUpdate5.Designer.cs">
       <DependentUpon>201612270510165_GeneralUpdate5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701122339038_GeneralUpdate6.cs" />
+    <Compile Include="Migrations\201701122339038_GeneralUpdate6.Designer.cs">
+      <DependentUpon>201701122339038_GeneralUpdate6.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -773,6 +778,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612270510165_GeneralUpdate5.resx">
       <DependentUpon>201612270510165_GeneralUpdate5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701122339038_GeneralUpdate6.resx">
+      <DependentUpon>201701122339038_GeneralUpdate6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
