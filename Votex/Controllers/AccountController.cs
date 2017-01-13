@@ -20,7 +20,7 @@ namespace Votex.Controllers
         private readonly IUnitOfWork _unitOfWork;
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        
         public AccountController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -178,8 +178,11 @@ namespace Votex.Controllers
                         UserId = user.Id,
                         ElectoralDistrictId = model.ElectoralDistrictId
                     };
+                    
                     _unitOfWork.Voters.Add(voter);
                     _unitOfWork.Complete();
+                    
+                    UserManager.AddToRole(user.Id, RoleName.Voter);
                     
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
